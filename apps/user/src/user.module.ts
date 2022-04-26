@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { UserCreator, UserFinder } from './application'
 import { UserGetController, UserPostController } from './infrastructure/controller'
+import { UserPostgresRepository } from './infrastructure/persistence'
 
 @Module({
   imports: [],
@@ -10,7 +11,7 @@ import { UserGetController, UserPostController } from './infrastructure/controll
     UserFinder,
     {
       provide: 'UserRepository',
-      useClass: null,
+      useClass: UserPostgresRepository,
     },
   ],
 })

@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  video-db:
+    image: mongo:5.0.7-focal
+    restart: always
+    ports:
+      - 27018:27017
+    
+  rabbitmq:
+    image: rabbitmq:3.10.0-rc.4-management-alpine
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  user-db:
+    image: postgres:12.2
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: userDb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
