@@ -1,4 +1,39 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "apps/microservice-kata/src",
+  "monorepo": true,
+  "root": "apps/microservice-kata",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/microservice-kata/tsconfig.app.json"
+  },
+  "projects": {
+    "microservice-kata": {
+      "type": "application",
+      "root": "apps/microservice-kata",
+      "entryFile": "main",
+      "sourceRoot": "apps/microservice-kata/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/microservice-kata/tsconfig.app.json"
+      }
+    },
+    "user": {
+      "type": "application",
+      "root": "apps/user",
+      "entryFile": "main",
+      "sourceRoot": "apps/user/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/user/tsconfig.app.json"
+      }
+    },
+    "video": {
+      "type": "application",
+      "root": "apps/video",
+      "entryFile": "main",
+      "sourceRoot": "apps/video/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/video/tsconfig.app.json"
+      }
+    }
+  }
 }
