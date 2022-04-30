@@ -6,7 +6,7 @@ interface userPostgresDTO {
   id: string
   name: string
   surname: string
-  videosCreated: number
+  videoscreated: number
   createdat: Date
   updatedat: Date
 }
@@ -45,12 +45,14 @@ export class UserPostgresRepository implements UserRepository {
 
     const dto = res.rows[0]
 
+    console.log(dto)
+
     return this.toEntity(dto)
   }
 
   private toEntity(dto: userPostgresDTO): User {
-    const { id, name, surname, videosCreated, createdat, updatedat } = dto
+    const { id, name, surname, videoscreated, createdat, updatedat } = dto
 
-    return new User(id, name, surname, videosCreated, createdat, updatedat)
+    return new User(id, name, surname, videoscreated, createdat, updatedat)
   }
 }
