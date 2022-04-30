@@ -48,6 +48,10 @@ export class UserPostgresRepository implements UserRepository {
     return this.toEntity(dto)
   }
 
+  async updateVideoCounter(id: string): Promise<void> {
+    await this.client.query('UPDATE users SET videoscreated = videoscreated + 1 WHERE id = $1', [id])
+  }
+
   private toEntity(dto: userPostgresDTO): User {
     const { id, name, surname, videoscreated, createdat, updatedat } = dto
 
