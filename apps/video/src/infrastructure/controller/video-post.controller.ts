@@ -1,9 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common'
+import { EventPattern } from '@nestjs/microservices'
 import { VideoCreator } from '../../application'
 
 interface NewVideoRequest {
   title: string
   duration: number
+  creatorId: string
 }
 
 @Controller('videos')
@@ -12,8 +14,8 @@ export class VideoPostController {
 
   @Post()
   run(@Body() body: NewVideoRequest) {
-    const { title, duration } = body
+    const { title, duration, creatorId } = body
 
-    return this.videoCreator.run(title, duration, null)
+    return this.videoCreator.run(title, duration, creatorId)
   }
 }

@@ -1,16 +1,23 @@
 import { Inject, Injectable } from '@nestjs/common'
+import { ClientProxy } from '@nestjs/microservices'
 import { ObjectId } from 'mongodb'
-import { Video, VideoRepository } from '../domain'
+import { firstValueFrom } from 'rxjs'
+import { Video, VideoCreated, VideoRepository } from '../domain'
 
 @Injectable()
 export class VideoCreator {
-  constructor(@Inject('VideoRepository') private readonly repository: VideoRepository) {}
+  constructor(
+    @Inject('VideoRepository') private readonly repository: VideoRepository,
+    @Inject('VIDEO_SERVICE') private client: ClientProxy,
+  ) {}
 
-  run(title: string, duration: number, creatorId?: string): Promise<void> {
+  async run(title: string, duration: number, creatorId?: string): Promise<void> {
     const id = new ObjectId()
 
     const video = new Video(id.toHexString(), title, duration, creatorId)
 
-    return this.repository.create(video)
+    await this.repository.create(video)
+
+    await firstValueFrom(this.client.emit('video-created', new VideoCreated(creatorId)))
   }
 }

@@ -45,8 +45,6 @@ export class UserPostgresRepository implements UserRepository {
 
     const dto = res.rows[0]
 
-    console.log(dto)
-
     return this.toEntity(dto)
   }
 
