@@ -30,6 +30,8 @@ async function bootstrap() {
   // })
 
   //3001
+  app.startAllMicroservices()
+
   await app.listen(3001)
 }
 bootstrap()

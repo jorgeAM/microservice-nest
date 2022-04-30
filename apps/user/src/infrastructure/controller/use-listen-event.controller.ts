@@ -9,7 +9,7 @@ export class UserListenEventController {
 
     const originalMsg = context.getMessage()
 
-    console.log('data from video service: ', data)
+    console.log('data from video service: ', data.creator)
 
     channel.ack(originalMsg)
   }

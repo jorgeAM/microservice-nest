@@ -1,3 +1,3 @@
-export class VideoCreated {
-  constructor(creator: string) {}
+export interface VideoCreated {
+  creator: string
 }

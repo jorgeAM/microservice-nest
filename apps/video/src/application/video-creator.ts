@@ -18,6 +18,8 @@ export class VideoCreator {
 
     await this.repository.create(video)
 
-    await firstValueFrom(this.client.emit('video-created', new VideoCreated(creatorId)))
+    const event: VideoCreated = { creator: creatorId }
+
+    await firstValueFrom(this.client.emit('video-created', event))
   }
 }
