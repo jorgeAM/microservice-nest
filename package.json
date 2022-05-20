@@ -29,6 +29,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "amqp-connection-manager": "4.1.2",
     "amqplib": "0.8.0",
+    "kafkajs": "2.0.0",
     "mongodb": "4.5.0",
     "nest-mongodb": "6.3.1",
     "pg": "8.7.3",
