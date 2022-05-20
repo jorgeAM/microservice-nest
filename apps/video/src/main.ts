@@ -6,13 +6,13 @@ async function bootstrap() {
   const app = await NestFactory.create(VideoModule)
 
   app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.RMQ,
+    transport: Transport.KAFKA,
     options: {
-      urls: ['amqp://localhost:5672'],
-      queue: 'video_queue',
-      noAck: false,
-      queueOptions: {
-        durable: false,
+      client: {
+        brokers: ['localhost:9092'],
+      },
+      consumer: {
+        groupId: 'video-consumer',
       },
     },
   })

@@ -20,6 +20,6 @@ export class VideoCreator {
 
     const event: VideoCreated = { creator: creatorId }
 
-    await firstValueFrom(this.client.emit('video-created', event))
+    await firstValueFrom(this.client.emit('video.created', event))
   }
 }

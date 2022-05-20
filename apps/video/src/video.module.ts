@@ -10,13 +10,14 @@ import { VideoMongoRepository } from './infrastructure/persistence'
     ClientsModule.register([
       {
         name: 'VIDEO_SERVICE',
-        transport: Transport.RMQ,
+        transport: Transport.KAFKA,
         options: {
-          urls: ['amqp://localhost:5672'],
-          queue: 'user_queue',
-          noAck: false,
-          queueOptions: {
-            durable: false,
+          client: {
+            clientId: 'video',
+            brokers: ['localhost:9092'],
+          },
+          consumer: {
+            groupId: 'video-consumer',
           },
         },
       },

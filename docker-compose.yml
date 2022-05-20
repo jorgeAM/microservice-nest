@@ -21,13 +21,6 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: localhost
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    
-  rabbitmq:
-    image: rabbitmq:3.10.0-rc.4-management-alpine
-    restart: always
-    ports:
-      - 5672:5672
-      - 15672:15672
 
   user-db:
     image: postgres:12.2
